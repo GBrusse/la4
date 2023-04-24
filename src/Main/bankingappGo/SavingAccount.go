@@ -1,17 +1,17 @@
-package main
+package bankingappGo
 
 import (
 	"fmt"
 	"time"
 )
 
-type SavingAccount struct {
+type savingAccount struct {
 	AccountNumber int
 	Balance       float64
 	InterestRate  float64
 }
 
-func (sa *SavingAccount) Deposit(amount float64) {
+func (sa *savingAccount) Deposit(amount float64) {
 	if amount > 0 {
 		sa.Balance += amount
 		fmt.Println("Deposit successful")
@@ -20,7 +20,7 @@ func (sa *SavingAccount) Deposit(amount float64) {
 	}
 }
 
-func (sa *SavingAccount) Withdraw(amount float64) {
+func (sa *savingAccount) Withdraw(amount float64) {
 	if amount > 0 && amount <= sa.Balance {
 		sa.Balance -= amount
 		fmt.Println("Withdrawal successful")
@@ -29,7 +29,7 @@ func (sa *SavingAccount) Withdraw(amount float64) {
 	}
 }
 
-func (sa *SavingAccount) AddInterest() {
+func (sa *savingAccount) AddInterest() {
 	periods := 12 // assuming monthly compounding
 	rate := sa.InterestRate / float64(periods)
 	interest := sa.Balance * rate
@@ -37,7 +37,7 @@ func (sa *SavingAccount) AddInterest() {
 	fmt.Printf("Added $%.2f interest\n", interest)
 }
 
-func (sa *SavingAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan float64) {
+func (sa *savingAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan float64) {
 	defer close(interestChannel)
 
 	periodsPerYear := 12 // assuming monthly compounding

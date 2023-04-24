@@ -1,11 +1,11 @@
-package main
+package bakingappGo
 
 import (
 	"fmt"
 	"time"
 )
 
-type Bank struct {
+type bank struct {
 	Customers         []*Customer
 	NumberOfCustomers int
 }
@@ -20,25 +20,25 @@ func (b *Bank) AddCustomer(firstName, lastName string) {
 	b.Customers = append(b.Customers, customer)
 }
 
-func (b *Bank) GetNumberOfCustomers() int {
+func (b *bank) GetNumberOfCustomers() int {
 	return b.NumberOfCustomers
 }
 
-func (b *Bank) GetCustomer(index int) *Customer {
+func (b *bank) GetCustomer(index int) *Customer {
 	if index < 0 || index >= b.NumberOfCustomers {
 		return nil
 	}
 	return b.Customers[index]
 }
 
-func (b *Bank) ShowCustomers() {
+func (b *bank) ShowCustomers() {
 	for i := 0; i < b.NumberOfCustomers; i++ {
 		customer := b.GetCustomer(i)
 		fmt.Printf("Customer [%d] = %s %s\n", i+1, customer.GetFirstName(), customer.GetLastName())
 	}
 }
 
-func (b *Bank) Accrue(interestRate float64, duration time.Duration) {
+func (b *bank) Accrue(interestRate float64, duration time.Duration) {
 	interestChannel := make(chan float64)
 	var totalInterest float64
 
