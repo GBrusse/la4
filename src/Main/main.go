@@ -3,6 +3,7 @@ package main
 import (
 	. "fmt"
 	. "main/person"
+	.
 )
 
 func main() {
