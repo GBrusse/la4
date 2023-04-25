@@ -48,7 +48,7 @@ func (c *CAccount) transfer(amount float64, toAccount *Account) error {
 		return fmt.Errorf("Insufficient funds")
 	}
 	c.balance -= amount
-	CAccount.balance += amount
+	c.balance += amount
 	return nil
 }
 
