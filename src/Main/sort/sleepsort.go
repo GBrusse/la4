@@ -2,12 +2,11 @@
 package sort
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
 
-func Sleep(arr []int) []int {
+func Sleepsort(arr []int) []int {
 	var wg sync.WaitGroup
 	out := make(chan int, len(arr))
 
@@ -30,10 +29,4 @@ func Sleep(arr []int) []int {
 		result = append(result, v)
 	}
 	return result
-}
-
-func Sort() {
-	arr := []int{1, 9, 2, 3, 7, 2}
-	sorted := Sleep(arr)
-	fmt.Println(sorted)
 }
