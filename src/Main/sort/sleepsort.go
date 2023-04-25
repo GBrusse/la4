@@ -1,5 +1,5 @@
 // go build sleepsort.go && ./sleepsort
-package main
+package sort
 
 import (
 	"fmt"
