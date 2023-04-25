@@ -9,7 +9,7 @@ type Account interface {
 	Accrue(interestRate float64, duration time.Duration, interestChannel chan<- float64)
 }
 
-type CheckingAccount struct {
+type CAccount struct {
 	accountNumber string
 	balance       float64
 	interestRate  float64
@@ -52,7 +52,7 @@ func (c *CheckingAccount) transfer(amount float64, toAccount *CheckingAccount) e
 	return nil
 }
 
-func newCheckingAccount(accountNumber string, balance float64, interestRate float64) *CheckingAccount {
+func newCAccount(accountNumber string, balance float64, interestRate float64) *CheckingAccount {
 	return &CheckingAccount{
 		accountNumber: accountNumber,
 		balance:       balance,
