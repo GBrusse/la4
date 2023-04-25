@@ -1,6 +1,7 @@
 package main
 
 import (
+	. "Main/sort"
 	. "fmt"
 	. "main/person"
 )
