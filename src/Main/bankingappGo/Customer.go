@@ -5,7 +5,7 @@ import "fmt"
 type Customer struct {
 	firstName, lastName, address string
 	checkingAccounts             []CAccount
-	savingsAccounts              []savingAccount
+	savingsAccounts              []savingsAccount
 }
 
 func NewCustomer(firstName string, lastName, address string) *Customer {
