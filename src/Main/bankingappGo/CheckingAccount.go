@@ -11,27 +11,27 @@ type CheckingAccount struct {
 	interestRate  float64
 }
 
-func (c *CheckingAccount) getAccountNumber() string {
+func (c *CAccount) getAccountNumber() string {
 	return c.accountNumber
 }
 
-func (c *CheckingAccount) getBalance() float64 {
+func (c *CAccount) getBalance() float64 {
 	return c.balance
 }
 
-func (c *CheckingAccount) getInterestRate() float64 {
+func (c *CAccount) getInterestRate() float64 {
 	return c.interestRate
 }
 
-func (c *CheckingAccount) setInterestRate(rate float64) {
+func (c *CAccount) setInterestRate(rate float64) {
 	c.interestRate = rate
 }
 
-func (c *CheckingAccount) deposit(amount float64) {
+func (c *CAccount) deposit(amount float64) {
 	c.balance += amount
 }
 
-func (c *CheckingAccount) withdraw(amount float64) error {
+func (c *CAccount) withdraw(amount float64) error {
 	if amount > c.balance {
 		return fmt.Errorf("Insufficient funds")
 	}
@@ -39,7 +39,7 @@ func (c *CheckingAccount) withdraw(amount float64) error {
 	return nil
 }
 
-func (c *CheckingAccount) transfer(amount float64, toAccount *CheckingAccount) error {
+func (c *CAccount) transfer(amount float64, toAccount *CheckingAccount) error {
 	if amount > c.balance {
 		return fmt.Errorf("Insufficient funds")
 	}
@@ -56,7 +56,7 @@ func newCheckingAccount(accountNumber string, balance float64, interestRate floa
 	}
 }
 
-func (acc *CheckingAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan float64) {
+func (acc *CAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan float64) {
 	defer close(interestChannel)
 
 	interest := acc.balance * interestRate * float64(duration) / 365.0

@@ -65,21 +65,21 @@ func (acc *CheckingAccount) Accrue(interestRate float64, duration time.Duration,
 	interestChannel <- interest
 }
 
-type SavingsAccount struct {
+type savingsAccount struct {
 	accountNumber int
 	balance       float64
 	interestRate  float64
 }
 
-func newSavingsAccount(accountNumber int, balance float64, interestRate float64) *SavingsAccount {
-	return &SavingsAccount{
+func newsavingsAccount(accountNumber int, balance float64, interestRate float64) *savingsAccount {
+	return &savingsAccount{
 		accountNumber: accountNumber,
 		balance:       balance,
 		interestRate:  interestRate,
 	}
 }
 
-func (sa *SavingsAccount) Deposit(amount float64) {
+func (sa *savingsAccount) Deposit(amount float64) {
 	if amount > 0 {
 		sa.balance += amount
 		fmt.Println("Deposit successful")
@@ -88,7 +88,7 @@ func (sa *SavingsAccount) Deposit(amount float64) {
 	}
 }
 
-func (sa *SavingsAccount) Withdraw(amount float64) {
+func (sa *savingsAccount) Withdraw(amount float64) {
 	if amount > 0 && amount <= sa.balance {
 		sa.balance -= amount
 		fmt.Println("Withdrawal successful")
@@ -97,14 +97,14 @@ func (sa *SavingsAccount) Withdraw(amount float64) {
 	}
 }
 
-func (sa *SavingsAccount) AddInterest() {
+func (sa *savingsAccount) AddInterest() {
 	periods := 12 // assuming monthly compounding
 	rate := sa.interestRate / float64(periods)
 	interest := sa.balance * rate
 	sa.balance += interest
 }
 
-func (sa *SavingsAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan<- float64) {
+func (sa *savingsAccount) Accrue(interestRate float64, duration time.Duration, interestChannel chan<- float64) {
 	interest := sa.balance * interestRate * float64(duration) / (365.0 * 24.0 * float64(time.Hour))
 	interestChannel <- interest
 }

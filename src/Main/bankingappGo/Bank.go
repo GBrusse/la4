@@ -10,13 +10,13 @@ type bank struct {
 	NumberOfCustomers int
 }
 
-func NewBank() *Bank {
-	return &Bank{}
+func NewBank() *bank {
+	return &bank{}
 }
 
-func (b *Bank) AddCustomer(firstName, lastName string) {
-	b.NumberOfCustomers++
-	customer := NewCustomer(firstName, lastName)
+func (b *bank) AddCustomer(firstName string, lastName string, address string) {
+	b.NumberOfCustomers += 1
+	customer := NewCustomer(firstName, lastName, address)
 	b.Customers = append(b.Customers, customer)
 }
 
@@ -43,8 +43,8 @@ func (b *bank) Accrue(interestRate float64, duration time.Duration) {
 	var totalInterest float64
 
 	for _, customer := range b.Customers {
-		for _, account := range customer.Accounts {
-			go account.Accrue(interestRate, duration, interestChannel)
+		for _, checkingAccounts := range customer.checkingAccounts {
+			go checkingAccounts.Accrue(interestRate, duration, interestChannel)
 		}
 	}
 

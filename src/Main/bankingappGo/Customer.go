@@ -4,9 +4,11 @@ import "fmt"
 
 type Customer struct {
 	firstName, lastName, address string
+	checkingAccounts             []CAccount
+	savingsAccounts              []savingAccount
 }
 
-func NewCustomer(firstName, lastName, address string) *Customer {
+func NewCustomer(firstName string, lastName, address string) *Customer {
 	return &Customer{
 		firstName: firstName,
 		lastName:  lastName,
